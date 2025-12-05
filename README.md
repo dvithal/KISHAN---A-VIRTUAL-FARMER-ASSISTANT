@@ -1,9 +1,9 @@
-#KISHAN – A Virtual Farmer Assistant  
+# KISHAN – A Virtual Farmer Assistant  
 A multilingual, AI-powered agricultural assistant that helps farmers diagnose plant diseases, get farming advice, and connect with real agricultural experts in real time.
 
 ---
 
-##Project Overview  
+## Project Overview  
 KISHAN is a hybrid AI system designed to support farmers with quick, accurate, and accessible agricultural guidance.  
 It integrates:
 
@@ -121,19 +121,25 @@ These unique features differentiate KISHAN from existing agricultural AI tools.
 
 ## Screenshots 
 1. Chatbot responses
- <img width="933" height="444" alt="image" src="https://github.com/user-attachments/assets/2a1f97a1-0132-417e-8f3e-8da000873bff" />
-<img width="940" height="462" alt="image" src="https://github.com/user-attachments/assets/5fec9344-71fc-4ec4-afb3-f1cf2462b3a3" />
+a)<img width="933" height="444" alt="image" src="https://github.com/user-attachments/assets/2a1f97a1-0132-417e-8f3e-8da000873bff" />
+ 
+b) <img width="940" height="462" alt="image" src="https://github.com/user-attachments/assets/5fec9344-71fc-4ec4-afb3-f1cf2462b3a3" />
+
 The above images demonstrates the system’s capability to handle image-based disease queries submitted by farmers. In this example, the farmer reports an unusual pattern appearing on the leaves of a plant. The proposed method accurately identifies the underlying disease and provides clear, practical recommendations to prevent further spread. This showcases the system’s reliability in real farm conditions and its ability to deliver actionable guidance when farmers need it most.
 
 2. Farmer- Expert chat
-   <img width="940" height="615" alt="image" src="https://github.com/user-attachments/assets/cbb1f2d1-c7be-4013-98bf-cad6857d6e9e" />
-  <img width="928" height="611" alt="image" src="https://github.com/user-attachments/assets/7932cb07-01e1-43b6-9e39-fb3cb915bd78" />
+a)<img width="940" height="615" alt="image" src="https://github.com/user-attachments/assets/cbb1f2d1-c7be-4013-98bf-cad6857d6e9e" />
+
+b)<img width="928" height="611" alt="image" src="https://github.com/user-attachments/assets/7932cb07-01e1-43b6-9e39-fb3cb915bd78" />
+
 The above images illustrate an example of the farmer–expert interaction feature within the proposed system. In this scenario, the farmer requests to speak with an agricultural expert, and the system successfully establishes the connection. The farmer is then able to present his query directly to the expert, who provides informed guidance and helps identify the issue affecting the plant’s leaves. 
 This sequence demonstrates the system’s ability to deliver real-time human expertise alongside AI assistance, ensuring farmers receive reliable and personalized support.
 
 - Language examples (Hindi/Tamil)
-<img width="828" height="337" alt="image" src="https://github.com/user-attachments/assets/e9381642-a9b5-4438-bf54-d9c0c44ad157" />
-<img width="828" height="374" alt="image" src="https://github.com/user-attachments/assets/1fa15f8b-55e7-4b74-be4e-72dfa994549d" />
+a)<img width="828" height="337" alt="image" src="https://github.com/user-attachments/assets/e9381642-a9b5-4438-bf54-d9c0c44ad157" />
+
+b)<img width="828" height="374" alt="image" src="https://github.com/user-attachments/assets/1fa15f8b-55e7-4b74-be4e-72dfa994549d" />
+
 The above images illustrate the proposed system’s ability to interact with farmers in multiple regional languages. As shown in the examples, the assistant seamlessly communicates in Hindi and Tamil, with support for many other languages as well. This multilingual capability ensures that farmers can receive guidance in the language they are most comfortable with, making the system more accessible and practical for real-world use.
 
 
