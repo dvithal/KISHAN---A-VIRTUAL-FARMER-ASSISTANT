@@ -145,8 +145,3 @@ The above images illustrate the proposed system’s ability to interact with far
 
 ---
 
-## License
-This project is for academic and research purposes.
-
----
-
