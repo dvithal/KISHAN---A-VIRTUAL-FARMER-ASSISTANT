@@ -1,147 +1,387 @@
-# KISHAN – A Virtual Farmer Assistant  
-A multilingual, AI-powered agricultural assistant that helps farmers diagnose plant diseases, get farming advice, and connect with real agricultural experts in real time.
+# KISHAN — A Virtual Farmer Assistant
+
+*Empowering farmers with AI-driven crop disease diagnosis, real-time chat support, and expert consultations.*
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-000000?style=for-the-badge&logo=socketdotio&logoColor=white)
+![Groq AI](https://img.shields.io/badge/Groq_AI-000000?style=for-the-badge)
+
+---
+## Patent
+
+This project is associated with the published patent:
+
+**Patent Title:** *A hybrid virtual farmer assistance system and a method for agricultural disease diagnosis and advisory support*  
+**Publication Number:** IN202641032886 A1  
+
+# About
+
+KISHAN is an AI-powered virtual farming assistant designed to help farmers make smarter decisions, improve crop yields, and reduce losses.
+
+It provides:
+
+- Instant AI Chat — Ask any farming question and get immediate, context-aware responses powered by Groq (LLaMA 3.3 70B).
+- Image-Based Disease Diagnosis — Upload a photo of your crop and receive a CNN-powered prediction of the disease along with detailed treatment advice.
+- Live Expert Connection — Seamlessly switch from AI mode to a live human expert for personalized, in-depth consultations.
 
 ---
 
-## Project Overview  
-KISHAN is a hybrid AI system designed to support farmers with quick, accurate, and accessible agricultural guidance.  
-It integrates:
+# Architecture
 
-- Multilingual AI Chatbot (14 Indian languages).
-- Image-based plant disease detection (Hybrid ResNet + CNN – 98% accuracy).
-- Direct Farmer - Expert Live Chat.
-- Simple web interface built for low-tech users.
-
-The system provides instant automated help while also enabling escalation to human experts for complex issues.
-
----
-
-## Key Features
-
-###  1. Multilingual AI Chatbot  
-- Understands and replies in 14 Indian languages (Hindi, Tamil, Telugu, Kannada, Bengali, Marathi, Punjabi, Gujarati, etc.)  
-- Handles general farming queries: crop care, irrigation, fertilisers, pest control, etc.  
-- Provides fast, conversational, easy-to-understand answers.
-
-###  2. Image-Based Disease Detection  
-When a farmer uploads a leaf image, the system processes it using multiple models:
-
-| Model | Accuracy |
-|-------|----------|
-| ResNet50 | 69% |
-| CNN | 89.27% |
-| SVM | 70% |
-| Random Forest | 71% |
-| XGBoost + PCA | 75% |
-| Hybrid (ResNet + CNN) | 98% |
-
-- Hybrid model selected for deployment
-- Trained on the PlantVillage dataset  
-- Provides disease name, severity, treatment & prevention steps
-
-###  3. Real-Time Expert Consultation  
-If AI is unsure or the farmer wants human help:  
-- The system connects them to a certified agricultural expert  
-- Live chat window for real-time conversation  
-- Experts can see the image & AI analysis before replying
-
-###  4. Complete Agricultural Ecosystem  
-A unified platform that brings together:  
-- Disease detection  
-- Multilingual chatbot  
-- Expert chat  
-- Future integrations: weather, soil health, market prices, government schemes  
+```text
+┌─────────────────────────────────────────────────────────┐
+│                    CLIENT (client.html)                 │
+│         Browser-based chat UI with Socket.IO            │
+└────────────┬───────────────────────┬────────────────────┘
+             │  WebSocket (Chat)     │  HTTP POST (Image)
+             ▼                       ▼
+┌─────────────────────────────────────────────────────────┐
+│               NODE.JS SERVER (server.js)                │
+│                                                         │
+│ • Express + Socket.IO                                   │
+│ • Routes messages to AI or Expert                       │
+│ • Handles image uploads via Multer                      │
+│ • Calls Groq API for AI responses                       │
+└────────────┬────────────────────────────────────────────┘
+             │ HTTP POST (Image → Prediction)
+             ▼
+┌─────────────────────────────────────────────────────────┐
+│           PYTHON ML SERVER (predict_server.py)          │
+│                                                         │
+│ • Flask REST API                                        │
+│ • Loads CNN model                                       │
+│ • Returns disease prediction + confidence               │
+└─────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## System Architecture (High-Level)
+# Key Features
 
-1. **Farmer Input**
-   - Text query → processed by NLP chatbot  
-   - Image → processed by ML/DL pipeline  
-
-2. **AI Processing**
-   - Preprocessing → normalization, augmentation  
-   - Model predictions → Hybrid ResNet+CNN final output  
-   - Structured recommendations generated  
-
-3. **Expert Escalation (Optional)**
-   - Farmer requests expert  
-   - System forwards image + AI output to expert  
-   - Expert chats directly with farmer  
-
-4. **Output**
-   - Disease diagnosis  
-   - Treatment recommendations  
-   - Expert advice  
-   - Multilingual responses  
+| Feature | Description |
+|---------|-------------|
+| AI Chatbot | Real-time conversational assistant powered by Groq (LLaMA 3.3 70B) |
+| Crop Disease Detection | CNN model trained on the PlantVillage dataset to classify 15 disease categories |
+| Expert Mode | Type **expert** in chat to connect with a live agricultural specialist |
+| Image Upload | Upload crop photos for instant AI or expert analysis |
+| Real-Time Communication | Socket.IO powered bidirectional messaging |
+| Dark Mode UI | Modern web interface optimized for usability |
 
 ---
 
-##  Tech Stack
+# Supported Disease Classes
 
-### **Frontend / Interface**
-- HTML, CSS, JavaScript  
-- Flask or Node.js backend serving the interface  
-- Mobile-friendly UI for rural accessibility  
+The CNN model identifies **15 disease categories** across three crop types.
 
-### **Backend**
-- Python-based ML pipeline  
-- NLP chatbot (LLM / GenAI)  
-- REST API endpoints  
+<details>
+<summary>Click to view all supported disease classes</summary>
 
-### **Machine Learning Models**
-- CNN  
-- ResNet50  
-- Hybrid ResNet + CNN  
-- SVM, Random Forest  
-- XGBoost + PCA  
+- Pepper Bell - Bacterial Spot
+- Pepper Bell - Healthy
+- Potato - Early Blight
+- Potato - Late Blight
+- Potato - Healthy
+- Tomato - Bacterial Spot
+- Tomato - Early Blight
+- Tomato - Late Blight
+- Tomato - Leaf Mold
+- Tomato - Septoria Leaf Spot
+- Tomato - Spider Mites
+- Tomato - Target Spot
+- Tomato - Mosaic Virus
+- Tomato - Yellow Leaf Curl Virus
+- Tomato - Healthy
 
-### **Dataset**
-- PlantVillage dataset (standard plant disease images)
-
----
-
-##  Experimental Results
-
-The hybrid ResNet + CNN model achieved 98% accuracy, significantly outperforming all single-model baselines.  
-This ensures high reliability in real farm environments.
+</details>
 
 ---
 
-## Novelty & Uniqueness  
-- Real-time AI + human expert hybrid decision system  
-- Multilingual conversational interface  
-- High-accuracy hybrid disease classifier  
-- Escalation mechanism for complex agricultural issues  
+# Tech Stack
 
-These unique features differentiate KISHAN from existing agricultural AI tools.
+## Backend
+
+- Node.js + Express
+- Socket.IO
+- Multer
+- Groq SDK
+- python-shell
+
+## Machine Learning Server
+
+- Python
+- Flask
+- TensorFlow
+- Keras
+- NumPy
+
+## Machine Learning Models
+
+- CNN
+- Random Forest
+- XGBoost
+
+## Frontend
+
+- HTML
+- CSS
+- JavaScript
+- Socket.IO Client
+
+## Dataset
+
+PlantVillage Dataset
+
+- 54,000+ crop leaf images
+- 15 disease categories
+- Pepper
+- Potato
+- Tomato
 
 ---
 
-## Screenshots 
-1. Chatbot responses
-<img width="933" height="444" alt="image" src="https://github.com/user-attachments/assets/2a1f97a1-0132-417e-8f3e-8da000873bff" />
- 
-<img width="940" height="462" alt="image" src="https://github.com/user-attachments/assets/5fec9344-71fc-4ec4-afb3-f1cf2462b3a3" />
+# Getting Started
 
-The above images demonstrates the system’s capability to handle image-based disease queries submitted by farmers. In this example, the farmer reports an unusual pattern appearing on the leaves of a plant. The proposed method accurately identifies the underlying disease and provides clear, practical recommendations to prevent further spread. This showcases the system’s reliability in real farm conditions and its ability to deliver actionable guidance when farmers need it most.
+## Prerequisites
 
-2. Farmer- Expert chat
-<img width="940" height="615" alt="image" src="https://github.com/user-attachments/assets/cbb1f2d1-c7be-4013-98bf-cad6857d6e9e" />
-
-<img width="928" height="611" alt="image" src="https://github.com/user-attachments/assets/7932cb07-01e1-43b6-9e39-fb3cb915bd78" />
-
-The above images illustrate an example of the farmer–expert interaction feature within the proposed system. In this scenario, the farmer requests to speak with an agricultural expert, and the system successfully establishes the connection. The farmer is then able to present his query directly to the expert, who provides informed guidance and helps identify the issue affecting the plant’s leaves. 
-This sequence demonstrates the system’s ability to deliver real-time human expertise alongside AI assistance, ensuring farmers receive reliable and personalized support.
-
-- Language examples (Hindi/Tamil)
-<img width="828" height="337" alt="image" src="https://github.com/user-attachments/assets/e9381642-a9b5-4438-bf54-d9c0c44ad157" />
-
-<img width="828" height="374" alt="image" src="https://github.com/user-attachments/assets/1fa15f8b-55e7-4b74-be4e-72dfa994549d" />
-
-The above images illustrate the proposed system’s ability to interact with farmers in multiple regional languages. As shown in the examples, the assistant seamlessly communicates in Hindi and Tamil, with support for many other languages as well. This multilingual capability ensures that farmers can receive guidance in the language they are most comfortable with, making the system more accessible and practical for real-world use.
-
+- Node.js v18+
+- Python 3.8+
+- pip
+- Groq API Key
 
 ---
 
+## Clone Repository
+
+```bash
+git clone https://github.com/mengji-dhanush/KISHAN---A-VIRTUAL-FARMER-ASSISTANT.git
+
+cd KISHAN---A-VIRTUAL-FARMER-ASSISTANT
+```
+
+---
+
+## Install Node.js Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Install Python Dependencies
+
+```bash
+pip install flask tensorflow numpy
+```
+
+---
+
+## Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+---
+
+## Train or Download the CNN Model
+
+The trained model (`plant_disease_cnn.h5`) is not included because of GitHub's file size limit.
+
+### Option A
+
+Train using `CNN.ipynb`.
+
+### Option B
+
+Use a pretrained model provided separately.
+
+Place the trained model inside the project root.
+
+---
+
+## Start Python Prediction Server
+
+```bash
+python predict_server.py
+```
+
+Runs on
+
+```
+http://localhost:8000
+```
+
+---
+
+## Start Node.js Server
+
+```bash
+node server.js
+```
+
+Runs on
+
+```
+http://localhost:5000
+```
+
+---
+
+## Launch the Application
+
+Open
+
+```
+http://localhost:5000
+```
+
+or open `client.html`.
+
+---
+
+# Project Structure
+
+```text
+KISHAN---A-VIRTUAL-FARMER-ASSISTANT/
+
+├── client.html
+├── server.js
+├── predict_server.py
+├── plant_disease_cnn.h5
+├── CNN.ipynb
+│
+├── ML MODELS
+│   ├── random_forest.ipynb
+│   └── XGBoost.ipynb
+│
+├── PlantVillage
+├── PlantVillage_split
+├── uploads
+├── package.json
+├── .env
+├── .gitignore
+└── README.md
+```
+
+---
+
+# How It Works
+
+## AI Chat Flow
+
+1. Farmer joins the chat.
+2. Types a farming-related question.
+3. Message is sent to the Node.js server.
+4. Server forwards the query to Groq (LLaMA 3.3 70B).
+5. AI response is streamed back in real time.
+
+---
+
+## Disease Diagnosis Flow
+
+1. Farmer uploads a crop leaf image.
+2. Image is sent to the Node.js server.
+3. Server forwards the image to the Flask prediction server.
+4. CNN predicts the disease.
+5. Prediction is sent to Groq.
+6. Groq generates symptoms, causes, and treatment advice.
+7. Results are returned to the farmer.
+
+---
+
+## Expert Mode Flow
+
+1. Farmer types **expert**.
+2. System switches to Expert Mode.
+3. Messages and uploaded images are routed to agricultural experts.
+4. Experts reply directly through the live chat.
+
+---
+
+# Screenshots
+
+## AI Chat
+
+<p align="center">
+<img src="images/chatbot.png" width="850">
+</p>
+
+---
+
+## Disease Detection
+
+<p align="center">
+<img src="images/disease_prediction.png" width="850">
+</p>
+
+---
+
+## Expert Consultation
+
+<p align="center">
+<img src="images/expert_chat.png" width="850">
+</p>
+
+---
+
+## Multilingual Support
+
+<p align="center">
+<img src="images/hindi.png" width="400">
+<img src="images/tamil.png" width="400">
+</p>
+
+---
+
+# Contributing
+
+Contributions are welcome.
+
+1. Fork the repository.
+
+2. Create a feature branch.
+
+```bash
+git checkout -b feature/amazing-feature
+```
+
+3. Commit your changes.
+
+```bash
+git commit -m "Add amazing feature"
+```
+
+4. Push to the branch.
+
+```bash
+git push origin feature/amazing-feature
+```
+
+5. Open a Pull Request.
+
+---
+
+# License
+
+This project is licensed under the ISC License.
+
+---
+
+# Acknowledgements
+
+- PlantVillage Dataset
+- Groq
+- TensorFlow
+- Socket.IO
+- Flask
+- Express.js
+- Node.js
+
+---
+
+*"Empowering farmers with smart AI solutions."*
