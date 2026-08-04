@@ -308,7 +308,7 @@ KISHAN---A-VIRTUAL-FARMER-ASSISTANT/
 ## AI Chat
 
 <p align="center">
-<img src="images/chatbot.png" width="850">
+<img width="933" height="444" alt="image" src="https://github.com/user-attachments/assets/28338fcc-7728-4256-b04f-f84da6d81cbd" />
 </p>
 
 ---
@@ -316,7 +316,7 @@ KISHAN---A-VIRTUAL-FARMER-ASSISTANT/
 ## Disease Detection
 
 <p align="center">
-<img src="images/disease_prediction.png" width="850">
+<img width="940" height="462" alt="image" src="https://github.com/user-attachments/assets/a317d922-d5e6-48ef-8774-14bfcdfd5e0f" />
 </p>
 
 ---
@@ -324,7 +324,8 @@ KISHAN---A-VIRTUAL-FARMER-ASSISTANT/
 ## Expert Consultation
 
 <p align="center">
-<img src="images/expert_chat.png" width="850">
+<img width="940" height="615" alt="image" src="https://github.com/user-attachments/assets/07c02748-f334-458f-bc96-6c81ef03d93a" />
+<img width="728" height="543" alt="image" src="https://github.com/user-attachments/assets/f950118d-32d8-4fb2-9f5d-f7604c6ddc69" />
 </p>
 
 ---
@@ -332,8 +333,9 @@ KISHAN---A-VIRTUAL-FARMER-ASSISTANT/
 ## Multilingual Support
 
 <p align="center">
-<img src="images/hindi.png" width="400">
-<img src="images/tamil.png" width="400">
+<img width="828" height="337" alt="image" src="https://github.com/user-attachments/assets/98359c00-90b2-4211-81f1-7d6cc49f3be3" />
+<img width="828" height="374" alt="image" src="https://github.com/user-attachments/assets/0b6e5405-b412-4742-af71-b6480054c804" />
+
 </p>
 
 ---
